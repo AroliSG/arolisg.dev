@@ -1,95 +1,142 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import {
+  useState,
+  useEffect
+} from 'react';
 
-export default function Home() {
+import { DEFAULT_NAVBAR_HEIGHT } from '@/utils/constants';
+
+import styles from './page.module.css'
+import Navbar from '@/arolisg/navbar';
+import Footer from '@/arolisg/footer';
+import Image from 'next/image';
+import Head from 'next/head'
+import SVGImage from '@/utils/svg';
+import useRobot from '../hooks/useRobot';
+import paragraph from '@/utils/grid.json';
+
+const Grid = () => {
+  return paragraph.grid.map (item => (
+    <div className = {styles.grid_items} key = {item.title}>
+        <Image
+          alt       = {item.title}
+          className = {styles.cover}
+          src       = {require('@/assets/img/' + item.img)}
+        />
+        <h2>{item.title}</h2>
+        <p>{item.description}</p>
+        <div className={styles.technologies}>
+          {
+            item.technologies
+              .split(',')
+              .map(tech => <label key = {tech}>{tech}</label>)
+          }
+        </div>
+
+        <div className={styles.photoContainer}>
+          <label>{item.isLocked ? "Locked" : "Unlocked"}</label>
+        </div>
+    </div>
+  ));
+}
+
+const HomePage = () => {
+  const {
+    setRequest,
+    isWriting
+  }                                               = useRobot ();
+
+  const [getNavHeight, setNavHeight]              = useState(DEFAULT_NAVBAR_HEIGHT);
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+
+      <Head>
+      <link rel="icon" href="/static/favicon.ico" />
+      </Head>
+
+      <Navbar onLayout = {height => {
+        setNavHeight (height);
+      }} />
+
+      <section>
+        <div className={styles.page} style = {{
+          height:'calc(100vh - ' + getNavHeight + 'px)'
+        }}>
+
+          <div className={styles.container}>
+            <div style={{marginTop: '-150px'}}>
+
+              <h1>Aroly Reyes</h1>
+              <p>Fullstack developer</p>
+
+            </div>
+
+          </div>
+
+          <div className={styles.social_parents}>
+          <div className={styles.social_icons}>
+            <SVGImage className= {styles.social} name = 'github' />
+            <SVGImage className= {styles.social} name = 'linkedin' />
+          </div>
+            <div className={styles.social_label}>
+              <p>Social</p>
+            </div>
+
+          </div>
+
+          <Image
+            alt       = "arrow-down"
+            src       = {require('../assets/icons/arrow-down.png')}
+            className = {styles.arrow_down}
+          />
+
         </div>
-      </div>
+      </section>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section>
+        <h1 style={{
+            color: 'white',
+            alignSelf: 'center',
+            margin: '90px'
+        }}>AI</h1>
+        <code className={styles.code} id = 'AboutUsId'>
+          <div id = "parent_page" />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+          <input
+            onKeyUpCapture={(evt) => {
+              if (evt.key === 'Enter') {
+                setRequest(evt.currentTarget.value);
+                evt.currentTarget.value = "";
+              }
+            }}
+            type        = 'text'
+            placeholder = {isWriting ? 'Thinking the phrase, please wait..' : 'Type here...'}
+            disabled    = {isWriting}
+          />
+        </code>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        <h1 style={{
+            color: 'white',
+            alignSelf: 'center',
+            margin: '90px'
+        }}>Talents</h1>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+      <section>
+        <h1 style={{
+          color: 'white',
+          alignSelf: 'center',
+          margin: '90px'
+        }}>Projects</h1>
+        <div className = {styles.grid_container} id = 'ProjectsId'>
+          <Grid />
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <Footer />
     </main>
   )
 }
+
+export default HomePage;

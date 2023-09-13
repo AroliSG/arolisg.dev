@@ -20,7 +20,10 @@
       }
     ],
     "paths": {
-      "@/arolisg/*": ["./*"]
+      "@/dba/*": ["./app/dba/"],
+      "@/arolisg/*": ["./components/arolisg/*"],
+      "@/utils/*": ["./components/utils/*"],
+      "@/assets/*": ["./assets/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

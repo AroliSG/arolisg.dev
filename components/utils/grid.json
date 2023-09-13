@@ -1,0 +1,44 @@
+{
+    "grid": [
+        {
+            "img": "dba.gif",
+            "title": "Discord Bot Architect",
+            "description": "cross-platform app that aims to make it easier for people with the creation of Discord`s bots. This is a full-featured app.",
+            "technologies": "React Native, NodeJS, TS",
+            "isLocked": true,
+            "url": "https://play.google.com/store/apps/details?id=com.societyginc.dba"
+        },
+        {
+            "img": "50projects.gif",
+            "title": "50 Projects in 50 days",
+            "description": "I encouraged myself to make 50projects in 50 days from scratch to top. Using just ReactJS without extensions.",
+            "technologies": "React JS, TS",
+            "isLocked": false,
+            "url": "https://arolisg.github.io/50projects-in-10days"
+        },
+        {
+            "img": "crosshairassist.gif",
+            "title": "Crosshair Assist",
+            "description": "A crosshair marker for when playing games such as valorant/cs go. This project will center a crosshair icon in your screen.",
+            "technologies": "TS, CSS, HTML, RUST",
+            "isLocked": false,
+            "url": "https://github.com/AroliSG/crosshair-assist"
+        },
+        {
+            "img": "miturnotv.gif",
+            "title": "Mi Turno TV",
+            "description": "A TV Channel adapted for mobile. The creation of this app was required by Urban Development",
+            "technologies": "React Native, TS",
+            "isLocked": false,
+            "url": "https://play.google.com/store/apps/details?id=com.societyg.miturno"
+        },
+        {
+            "img": "tricktimeltd.gif",
+            "title": "Trick Time LTD",
+            "description": "Fully responsive app, developed for a fast and efficient user end response. This website was made for a customer with trust and loyalty! In collaboration with Urban Dev",
+            "technologies": "HTML, PHP, CSS, LESS",
+            "isLocked": true,
+            "url": "tricktimeltd.com"
+        }
+    ]
+}

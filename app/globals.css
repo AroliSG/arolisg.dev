@@ -20,4 +20,8 @@ section {
   display: flex;
   flex-direction: column;
   width: 90%;
+  align-self: center;
+  outline: none;
+  border-width: 0;
+  
 }
